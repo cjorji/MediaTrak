@@ -1,0 +1,16 @@
+services:
+  mediatrak:
+    build: .
+    image: mediatrak:local
+    restart: unless-stopped
+    ports:
+      - "8090:8000"
+    env_file: .env
+    volumes:
+      - ${MEDIATRAK_DATA_DIR:-./data}:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/session/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s

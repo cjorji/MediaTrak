@@ -1,0 +1,12 @@
+.venv
+.git
+.env
+work
+**/node_modules
+**/data
+**/dist
+**/__pycache__
+.pnpm-store
+.ruff_cache
+outputs
+.env.*
